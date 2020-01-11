@@ -18,7 +18,7 @@ jobs:
   dockerize:
     machine:
       image: ubuntu-1604:201903-01
-    
+
       working_directory: ~/repo
 
       steps:
@@ -27,18 +27,18 @@ jobs:
         - run:
             name: "Logiing to dockerhub"
             command: docker login -u $USERNAME_DOCKERHUB -p $PASSWORD_DOCKERHUB
-        
+
         - run:
             name: "Build Image"
             command: docker build -t gbo96/eventsapp:$CIRCLE_BUILD_NUM .
-        
+
         - run:
             name: "Push docker image"
             command: docker push gbo96/eventsapp:$CIRCLE_BUILD_NUM
 
 workflows:
   version: 2
-    test_and_dockerize:
-      jobs:
-        - test
-        - dockerize
+  test_and_dockerize:
+    jobs:
+      - test
+      - dockerize
