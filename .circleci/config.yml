@@ -41,6 +41,6 @@ workflows:
   test_and_dockerize:
     jobs:
       - test
-      - dockerize
+      - dockerize:
           requires:
             - test
