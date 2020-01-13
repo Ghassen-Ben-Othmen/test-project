@@ -40,7 +40,7 @@ app.delete("/events", deleteAllEvents);
 
 // connect to db
 mongoose
-  .connect(`mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/`, {
+  .connect(`mongodb://${DB_HOST}:${DB_PORT}/`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
