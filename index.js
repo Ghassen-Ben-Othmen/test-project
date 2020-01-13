@@ -38,6 +38,14 @@ app.delete("/events/:id", deleteEvent);
 // delete all events route
 app.delete("/events", deleteAllEvents);
 
+// metrics
+const client = require("prom-client");
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics({ timeout: 1000 });
+app.get("/metrics", (req, res) => {
+  res.set("Content-Type", client.register.contentType);
+  res.end(client.register.metrics());
+});
 // connect to db
 mongoose
   .connect(`mongodb://${DB_HOST}:${DB_PORT}/`, {
