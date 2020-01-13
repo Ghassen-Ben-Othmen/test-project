@@ -5,7 +5,7 @@ let getAllEvents = (req, res, next) => {
     .exec()
     .then(docs => {
       return res.status(200).json({
-        Events: docs
+        events: docs
       });
     })
     .catch(err => {
