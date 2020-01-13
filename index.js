@@ -1,6 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { getAllEvents, saveEvent } = require("./controllers/events.controller");
+const {
+  getAllEvents,
+  saveEvent,
+  getEventById,
+  deleteEvent,
+  deleteAllEvents
+} = require("./controllers/events.controller");
 const {
   DB_HOST,
   DB_PORT,
@@ -22,6 +28,15 @@ app.get("/events", getAllEvents);
 
 // save an event route
 app.post("/events", saveEvent);
+
+// get event by id route
+app.get("/events/:id", getEventById);
+
+// delete event route
+app.delete("/events/:id", deleteEvent);
+
+// delete all events route
+app.delete("/events", deleteAllEvents);
 
 // connect to db
 mongoose

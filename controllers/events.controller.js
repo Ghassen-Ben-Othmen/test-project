@@ -55,7 +55,42 @@ let getEventById = (req, res, next) => {
     });
 };
 
+let deleteEvent = (req, res, next) => {
+  let id = req.params.id;
+
+  Event.deleteOne({ _id: id })
+    .exec()
+    .then(obj => {
+      return res.status(200).json({
+        deleted: obj
+      });
+    })
+    .catch(err => {
+      return res.status(500).json({
+        err
+      });
+    });
+};
+
+let deleteAllEvents = (req, res, next) => {
+  Event.deleteMany()
+    .exec()
+    .then(obj => {
+      return res.status(200).json({
+        deleted: obj
+      });
+    })
+    .catch(err => {
+      return res.status(500).json({
+        err
+      });
+    });
+};
+
 module.exports = {
   getAllEvents,
-  saveEvent
+  saveEvent,
+  getEventById,
+  deleteEvent,
+  deleteAllEvents
 };
